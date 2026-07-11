@@ -27,7 +27,31 @@ export const metadata: Metadata = {
   title: TITULO,
   description: DESCRIPCION,
   applicationName: "RoundIQ",
+  keywords: [
+    "RoundIQ",
+    "análisis de combate con IA",
+    "MMA",
+    "boxeo",
+    "artes marciales",
+    "cámara POV",
+    "análisis de sparring",
+    "tecnología deportiva",
+  ],
+  authors: [{ name: "IKBATECH" }],
+  creator: "IKBATECH",
+  publisher: "IKBATECH",
   alternates: { canonical: "/" },
+  // Le dice a Google que indexe todo y muestre previews completos
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
     type: "website",
     locale: "es_ES",
@@ -52,6 +76,42 @@ export const metadata: Metadata = {
   },
 };
 
+// ── Datos estructurados (JSON-LD) ──
+// Le explica a Google, en su idioma, que RoundIQ es una marca real: quién la hace,
+// cuál es su web oficial y sus redes. Es lo que ayuda a distinguirnos de los otros
+// "RoundIQ" que ya existen y, con el tiempo, a ganar el panel de marca.
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organizacion`,
+      name: "RoundIQ",
+      legalName: "IKBATECH",
+      url: SITE_URL,
+      logo: `${SITE_URL}/logo-roundiq.png`,
+      description: DESCRIPCION,
+      foundingLocation: {
+        "@type": "Place",
+        address: { "@type": "PostalAddress", addressCountry: "GT" },
+      },
+      sameAs: [
+        "https://www.instagram.com/roundiq/",
+        "https://www.tiktok.com/@roundiq.app",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#sitio`,
+      url: SITE_URL,
+      name: "RoundIQ",
+      description: DESCRIPCION,
+      inLanguage: "es",
+      publisher: { "@id": `${SITE_URL}/#organizacion` },
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -59,6 +119,12 @@ export default function RootLayout({
 }) {
     return (
     <html lang="es">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className={`${bebasNeue.variable} ${inter.variable} font-inter bg-[#0a0a0a] antialiased`}
         // Esto le dice al navegador que siempre empiece desde arriba
