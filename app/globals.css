@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+/* Variables de fuentes disponibles en todo el sitio */
+@theme {
+  --font-bebas: var(--font-bebas);
+  --font-inter: var(--font-inter);
+}
+
+/* Fondo con textura de grano sutil — da profundidad sin colores */
+body {
+  background-color: #0a0a0a;
+  /* Ruido SVG inline como textura */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* Scrollbar personalizada — detalle premium */
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #e63329;
+}
+
+/* Selección de texto en rojo */
+::selection {
+  background: #e63329;
+  color: white;
+}

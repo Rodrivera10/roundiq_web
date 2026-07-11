@@ -1,0 +1,9 @@
+allowBuilds:
+  sharp: true
+  unrs-resolver: true
+ignoredBuiltDependencies:
+  - sharp
+  - unrs-resolver
+# Forzar postcss parcheado (CVE GHSA-qx2v-qp2m-jg93 en <8.5.10, via next)
+overrides:
+  postcss: '>=8.5.10'
